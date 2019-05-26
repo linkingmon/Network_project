@@ -17,7 +17,6 @@ def predict_emotion(face_image_gray):
                              interpolation=cv2.INTER_AREA)
     image = resized_img.reshape(1, 48, 48, 1) / 255.
     res = np.argmax(model.predict(image))
-    res = 7
     return res
 
 
