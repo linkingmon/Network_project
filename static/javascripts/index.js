@@ -44,13 +44,13 @@ $(function () {
         //console.log(msg.msg);
         $('<div class="message new"><figure class="avatar"><img src="/static/mugshot/' + msg.PictureUrl + '" /></figure>' + msg.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
         setDate(msg.time);
-        // $('.message-input').val(null);
         updateScrollbar();
     });
 
 
     $('.message-submit').click(function () {
         insertMessage();
+        $('.message-input').val(null);
     });
 
     $(window).on('keydown', function (e) {
