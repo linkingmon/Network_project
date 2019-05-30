@@ -44,7 +44,7 @@ $(function () {
         //console.log(msg.msg);
         $('<div class="message new"><figure class="avatar"><img src="/static/mugshot/' + msg.PictureUrl + '" /></figure>' + msg.msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
         setDate(msg.time);
-        $('.message-input').val(null);
+        // $('.message-input').val(null);
         updateScrollbar();
     });
 
@@ -56,6 +56,7 @@ $(function () {
     $(window).on('keydown', function (e) {
         if (e.which == 13) {
             insertMessage();
+            $('.message-input').val(null);
             return false;
         }
     });

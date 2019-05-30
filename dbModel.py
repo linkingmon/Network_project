@@ -9,6 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:xxxxx@localhost/db'
 
 db = SQLAlchemy(app)
+
 migrate = Migrate(app, db)
 
 manager = Manager(app)

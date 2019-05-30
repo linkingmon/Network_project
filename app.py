@@ -72,7 +72,6 @@ def index():
         UserAccounts,
         UserAccounts.UserName == Message.UserName
     ).all()
-
     mug_shot_title = UserAccounts.query.filter_by(
         UserName=user_id).first().MugShot
     print(mug_shot_title)
@@ -162,6 +161,7 @@ def send_inquiry(msg):
     user_id = session.get('user_id')
     create_date = datetime.now()
 
+
     data_message = Message(
         user_name=user_id,
         messages=msg['msg'],
@@ -247,15 +247,6 @@ def croppic():
         save_path = '{}/{}'.format(MugShot_FOLDER, mugshot)
         final_image.save(save_path)
 
-        #  The crop rectangle, as a (left, upper, right, lower)-tuple.
-        # box = (imgX1, imgY1, imgX1 + cropW, imgY1 + cropH)
-        # newImg = source_image.crop(box)
-        # imgByteArr = io.BytesIO()
-        # newImg.save(imgByteArr, format=image_format)
-        # imgByteArr = imgByteArr.getvalue()
-        # imgbase = base64.b64encode(imgByteArr).decode('utf-8')
-        # img_base64 = '{},{}'.format(title_head, imgbase)
-
         data = {
             'status': 'success',
             'url': '/{}/{}'.format(MugShot_PATH, mugshot),
@@ -298,5 +289,5 @@ def face_expression():
 
 
 if __name__ == '__main__':
-    # socketio.run(app, host = '140.112.244.172')
-    socketio.run(app)
+    socketio.run(app, host = '140.112.244.172')
+    # socketio.run(app, host='127.0.0.77')

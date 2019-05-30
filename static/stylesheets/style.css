@@ -16,8 +16,6 @@ body {
 }
 
 body {
-  background: -webkit-linear-gradient(315deg, #044f48, #2a7561);
-  background: linear-gradient(135deg, #044f48, #2a7561);
   background-size: cover;
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
@@ -31,10 +29,6 @@ body {
   top: 0;
   left: 0;
   z-index: 1;
-  background: url("https://images.unsplash.com/photo-1451186859696-371d9477be93?crop=entropy&fit=crop&fm=jpg&h=975&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1925") no-repeat 0 0;
-  -webkit-filter: blur(80px);
-          filter: blur(80px);
-
 }
 
 /*--------------------
@@ -42,12 +36,12 @@ Chat
 --------------------*/
 .chat {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 47%;
+  left: 80%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  width: 50%;
-  height: 80vh;
+  width: 30%;
+  height: 70%;
   max-height: 70%;
   z-index: 2;
   overflow: hidden;
@@ -58,14 +52,7 @@ Chat
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
           flex-direction: column;
 }
 
@@ -467,4 +454,14 @@ Bounce
     -webkit-transform: translateY(-10px);
             transform: translateY(-10px);
   }
+}
+
+.face{
+    margin-left: 28%;
+    margin-top: 0%;
+}
+
+.video{
+    margin-left: 15%;
+    margin-top: 0%;
 }
