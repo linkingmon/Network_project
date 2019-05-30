@@ -160,7 +160,7 @@ def test_connect():
 def send_inquiry(msg):
     user_id = session.get('user_id')
     create_date = datetime.now()
-
+    msg['msg'] = msg['msg'].encode('latin-1').decode('utf-8')
 
     data_message = Message(
         user_name=user_id,
@@ -289,5 +289,5 @@ def face_expression():
 
 
 if __name__ == '__main__':
-    socketio.run(app, host = '140.112.244.172')
-    # socketio.run(app, host='127.0.0.77')
+    # socketio.run(app, host = '140.112.244.172')
+    socketio.run(app, host='127.0.0.6')

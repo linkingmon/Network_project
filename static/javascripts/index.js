@@ -28,6 +28,10 @@ $(function () {
     function insertMessage() {
         //console.log('insertMessage');
         var msg = $('.message-input').val();
+        console.log(msg);
+        msg = unescape(decodeURIComponent(msg));
+        console.log(msg);
+
         if ($.trim(msg) == '') {
             return false;
         }
@@ -36,6 +40,7 @@ $(function () {
             msg: msg,
             room: 'A_Room'
         };
+        console.log(obj);
         socket.emit('sendInquiry', obj);
     }
 

@@ -7,8 +7,8 @@ cascPath = 'haarcascade_frontalface_dataset.xml'  # dataset
 faceCascade = cv2.CascadeClassifier(cascPath)
 
 video_capture = cv2.VideoCapture(0)  # 0 for web camera live stream
-model = load_model('model.h5')
-model._make_predict_function()
+# model = load_model('model.h5')
+# model._make_predict_function()
 
 
 def predict_emotion(face_image_gray):
@@ -16,7 +16,8 @@ def predict_emotion(face_image_gray):
     resized_img = cv2.resize(face_image_gray, (48, 48),
                              interpolation=cv2.INTER_AREA)
     image = resized_img.reshape(1, 48, 48, 1) / 255.
-    res = np.argmax(model.predict(image))
+    # res = np.argmax(model.predict(image))
+    res = 0
     return res
 
 
