@@ -9,7 +9,8 @@ import base64
 import os
 import uuid
 import io
-from camera import camera_stream
+# from camera import camera_stream
+from camera_opencv import Camera
 import time
 from skimage import io
 import cv2
@@ -262,14 +263,21 @@ def croppic():
 
 @app.route('/video_feed')
 def video_feed():
-    def gen_frame():
+    
+    return Response(gen(Camera()),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+def gen_frame():
         while True:
             global res
             frame, res = camera_stream()
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concate frame one by one and show result
-    return Response(gen_frame(),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+def gen(camera):
+    """Video streaming generator function."""
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
 @app.route('/test')
