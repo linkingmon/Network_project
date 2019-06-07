@@ -1,19 +1,18 @@
-from flask import Flask, session, redirect, render_template, request, flash, url_for, json, Response
-from flask_socketio import SocketIO, emit, join_room
-from flask_login import UserMixin, LoginManager, login_required, current_user, login_user, logout_user
-from dbModel import UserAccounts, Message, db
-from functools import wraps
-from PIL import Image
-from datetime import datetime
-import base64
-import os
-import uuid
-import io
-# from camera import camera_stream
-from camera_opencv import Camera
-import time
-from skimage import io
 import cv2
+from skimage.io import imread
+import time
+from camera_opencv import *
+import io
+import uuid
+import os
+import base64
+from datetime import datetime
+from PIL import Image
+from functools import wraps
+from dbModel import UserAccounts, Message, db
+from flask_login import UserMixin, LoginManager, login_required, current_user, login_user, logout_user
+from flask_socketio import SocketIO, emit, join_room
+from flask import Flask, session, redirect, render_template, request, flash, url_for, json, Response
 
 MugShot_PATH = 'static/mugshot'
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -30,10 +29,12 @@ login_manager.login_message_category = "info"
 
 socketio = SocketIO(app)
 async_mode = "eventlet"
-res = 0
+res = 7
+
 
 class User(UserMixin):
     pass
+
 
 def to_json(func):
     @wraps(func)
@@ -263,19 +264,15 @@ def croppic():
 
 @app.route('/video_feed')
 def video_feed():
-    
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-def gen_frame():
-        while True:
-            global res
-            frame, res = camera_stream()
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concate frame one by one and show result
+
+
 def gen(camera):
     """Video streaming generator function."""
+    global res
     while True:
-        frame = camera.get_frame()
+        frame, res = camera.get_frame()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
@@ -284,7 +281,8 @@ def gen(camera):
 def face_expression():
     def image():
         global res
-        img = io.imread('{}.png'.format(res))
+        # emit('char', res)
+        img = imread('{}.png'.format(res))
         return cv2.imencode('.jpg', img)[1].tobytes()
 
     def frame():
@@ -296,6 +294,12 @@ def face_expression():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
+# @socketio.emit('char')
+# def t():
+#     global res
+#     return res
+
+
 if __name__ == '__main__':
-    # socketio.run(app, host = '140.112.244.172')
-    socketio.run(app, host='127.0.0.6')
+    # socketio.run(app, host='140.112.244.172')
+    socketio.run(app, host='127.0.0.19')

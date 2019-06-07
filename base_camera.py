@@ -1,5 +1,6 @@
 import time
 import threading
+
 try:
     from greenlet import getcurrent as get_ident
 except ImportError:
@@ -13,6 +14,7 @@ class CameraEvent(object):
     """An Event-like class that signals all active clients when a new frame is
     available.
     """
+
     def __init__(self):
         self.events = {}
 
@@ -56,6 +58,7 @@ class BaseCamera(object):
     frame = None  # current frame is stored here by background thread
     last_access = 0  # time of last client access to the camera
     event = CameraEvent()
+    res = 7
 
     def __init__(self):
         """Start the background camera thread if it isn't running yet."""
@@ -77,8 +80,7 @@ class BaseCamera(object):
         # wait for a signal from the camera thread
         BaseCamera.event.wait()
         BaseCamera.event.clear()
-
-        return BaseCamera.frame
+        return BaseCamera.frame, BaseCamera.res
 
     @staticmethod
     def frames():

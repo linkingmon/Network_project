@@ -11,7 +11,7 @@ $(function () {
 
     socket.on('connect', function () {
         //console.log('connected!');
-        socket.emit('join', {room: 'A_Room'});
+        socket.emit('join', { room: 'A_Room' });
     });
 
     function updateScrollbar() {
@@ -66,5 +66,8 @@ $(function () {
         }
     });
 
+    // socket.on('char', function (e) {
+    //     console.log(e)
+    // })
 
 });

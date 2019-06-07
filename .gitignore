@@ -1,2 +1,4 @@
 haarcascade_frontalface_dataset.xml
 model.h5
+__pycache__
+.vscode
