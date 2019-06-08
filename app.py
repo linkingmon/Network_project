@@ -218,8 +218,9 @@ def croppic():
         # title_head = img_url.split(',')[0]
         img_data = img_url.split('base64,')[1]
         img_data = base64.b64decode(img_data)
-
+        # print("TTTTTTTTTTt")
         source_image = Image.open(io.BytesIO(img_data))
+        # print("XXXXXXXXXXXXXXXXXXXXXXXXXX", source_image)
         image_format = source_image.format.lower()
         # create new crop image
         source_image = source_image.resize((img_w, img_h), Image.ANTIALIAS)
@@ -238,7 +239,13 @@ def croppic():
 
         uuid_name = str(uuid.uuid1())
         mugshot = '{}.{}'.format(uuid_name, image_format)
+        # print("XXXXXXXXXXXXXXXXXX")
+        # print(img_url)
+        # print(uuid_name)
+        # print(mugshot)
         user_mugshot = UserAccounts.query.filter_by(UserName=user_id).first()
+        # print(user_mugshot.MugShot)
+        # print("XXXXXXXXXXXXXXXXXX")
         if user_mugshot.MugShot != "default.jpg":
             delete_filename = '{}/{}'.format(MugShot_FOLDER,
                                              user_mugshot.MugShot)
@@ -302,4 +309,4 @@ def face_expression():
 
 if __name__ == '__main__':
     # socketio.run(app, host='140.112.244.172')
-    socketio.run(app, host='127.0.0.19')
+    socketio.run(app, host='127.0.0.21')
