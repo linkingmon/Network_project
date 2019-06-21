@@ -1,7 +1,9 @@
+pip3 install opencv-python
+pip3 install scikit-image
 pip3 install flask
-pip3 install flask-socket
-pip3 install flask
-pip3 install flask
-pip3 install flask-SQLAlchemy== 2.1
-pip3 install h5py
+pip3 install flask-SQLAlchemy==2.1.0
+pip3 install flask-script
+pip3 install flask-migrate
+pip3 install flask-login
+pip3 install flask-socketio
 pip3 install keras
