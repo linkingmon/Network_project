@@ -2,8 +2,9 @@
 
 ## Usage<br>
 1. run "bash setup.sh" to install all packages<br> 
-2. Download our pretrained model from https://drive.google.com/open?id=1CRMeaL2TP9zSEB3m-OUv9C_sKKzqqGjw <br>
-3. run "python3 app.py 0" for closing face detection & "python3 app.py 1" for opening face detection<br><br>
+2. run "pip3 install tensorflow==1.13" if you have no cuda；otherwise, run “pip3 install tensorflow-gpu==1.13”<br>
+3. Download our pretrained model from https://drive.google.com/open?id=1CRMeaL2TP9zSEB3m-OUv9C_sKKzqqGjw <br>
+4. run "python3 app.py 0" for closing face detection & "python3 app.py 1" for opening face detection<br><br>
 
 ## Update<br>
 - (6/7)  Apply frame rate control on server side<br>
