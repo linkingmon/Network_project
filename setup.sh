@@ -6,4 +6,5 @@ pip3 install flask-script
 pip3 install flask-migrate
 pip3 install flask-login
 pip3 install flask-socketio
+pip3 install alembic
 pip3 install keras
